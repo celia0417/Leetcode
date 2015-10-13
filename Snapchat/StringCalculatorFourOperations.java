@@ -83,6 +83,8 @@ public class StringCalculatorFourOperations {
 			while (x < len1 && (num1.charAt(x) - '0') == (num2.charAt(x) - '0')) {
 				x++;
 			}
+			if (x == len1)
+				return 0;
 			if (x < len1 && (num1.charAt(x) - '0') < (num2.charAt(x) - '0'))
 				return -1;
 		}
@@ -90,14 +92,44 @@ public class StringCalculatorFourOperations {
 	}
 
 	public String divide(String num1, String num2) {
-		while(compare(num1, num2) == -1){
-			
+		int com = compare(num1, num2);
+		if (com == -1)
+			return "0";
+		else if (com == 0)
+			return "1";
+		StringBuilder sb2 = new StringBuilder(num2);
+		StringBuilder res = new StringBuilder();
+		int cnt = num1.length() - num2.length();
+		while (compare(num1, num2) != -1) {
+			while (compare(num1, sb2.toString()) == 1) {
+				sb2.append("0");
+			}
+			while (compare(num1, sb2.toString()) == -1)
+				sb2.deleteCharAt(sb2.length() - 1);
+			for (int i = 0; i <= 9; i++) {
+				// String temp = num1;
+				if (i != 0) {
+					num1 = minus(num1, sb2.toString());
+				}
+				int comRes = compare(num1, sb2.toString());
+				if (comRes == -1) {
+					res.append(i);
+					if (cnt > 0 && num1.equals("0")) {
+						while (cnt > 0) {
+							res.append("0");
+							cnt--;
+						}
+					}
+					cnt--;
+					break;
+				}
+			}
 		}
-		return "";
+		return res.toString();
 	}
 
 	public static void main(String args[]) {
 		StringCalculatorFourOperations sc = new StringCalculatorFourOperations();
-		System.out.println(sc.minus("15", "15"));
+		System.out.println(sc.divide("1000", "15"));
 	}
 }
