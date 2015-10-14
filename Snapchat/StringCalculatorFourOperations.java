@@ -107,7 +107,6 @@ public class StringCalculatorFourOperations {
 			while (compare(num1, sb2.toString()) == -1)
 				sb2.deleteCharAt(sb2.length() - 1);
 			for (int i = 0; i <= 9; i++) {
-				// String temp = num1;
 				if (i != 0) {
 					num1 = minus(num1, sb2.toString());
 				}
