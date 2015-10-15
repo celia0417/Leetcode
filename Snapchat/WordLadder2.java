@@ -8,9 +8,11 @@ public class WordLadder2 {
 
 	public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {
 		Map<String, Integer> map = new HashMap<>();
+		Map<Integer, List<String>> map2 = new HashMap<>();
 		Queue<String> word = new LinkedList<>();
 		word.add(beginWord);
 		map.put(beginWord, 1);
+		map2.put(1, new ArrayList<String>(Arrays.asList(beginWord)));
 
 		while (!word.isEmpty()) {
 			String cur = word.poll();
@@ -18,8 +20,27 @@ public class WordLadder2 {
 			if (dep >= minDepth)
 				continue;
 			if (cur.equals(endWord)) {
+				String pre = map2.get(1).get(0);
+				System.out.print(pre + " ");
+				for (int i = 2; i < dep; i++) {
+					List<String> list = map2.get(i);
+					for (String s : list) {
+						for (int j = 0; j < s.length(); j++) {
+							char newChar[] = s.toCharArray();
+							for (char c = 'a'; c <= 'z'; c++) {
+								newChar[j] = c;
+								String newString = new String(newChar);
+								if (newString.equals(pre)) {
+									pre = newString;
+									System.out.println(pre + " ");
+									break;
+								}
+							}
+						}
+					}
+				}
 				minDepth = Math.min(minDepth, dep);
-				continue;
+				break;
 			}
 
 			for (int i = 0; i < cur.length(); i++) {
@@ -30,6 +51,10 @@ public class WordLadder2 {
 					if (wordList.contains(newString) && !map.containsKey(newString)) {
 						word.add(newString);
 						map.put(newString, dep + 1);
+						if (map2.containsKey(dep + 1))
+							map2.get(dep + 1).add(newString);
+						else
+							map2.put(dep + 1, new ArrayList<String>(Arrays.asList(newString)));
 					}
 				}
 			}
@@ -57,14 +82,14 @@ public class WordLadder2 {
 				String newString = new String(newChar);
 				if (map.containsKey(newString) && map.get(newString) == dep + 1) {
 					list.add(newString);
-					dfs(map, newString, endWord,list);
+					dfs(map, newString, endWord, list);
 					list.remove(list.size() - 1);
 				}
 			}
 		}
 	}
-	
-	public static void main(String args[]){
+
+	public static void main(String args[]) {
 		WordLadder2 wl = new WordLadder2();
 		Set<String> set = new HashSet<String>();
 		set.add("hit");
@@ -74,6 +99,12 @@ public class WordLadder2 {
 		set.add("lot");
 		set.add("log");
 		set.add("hot");
-		wl.findLadders("hit", "cog", set);
+		List<List<String>> res = wl.findLadders("hit", "cog", set);
+		for (List<String> l : res) {
+			for (String s : l) {
+				System.out.print(s + " ");
+			}
+			System.out.println();
+		}
 	}
 }

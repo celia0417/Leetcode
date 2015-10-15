@@ -66,6 +66,8 @@ public class StringCalculatorFourOperations {
 			if (sum < 0) {
 				sum += 10;
 				carry = -1;
+			}else{
+				carry = 0;
 			}
 			sb.insert(0, sum);
 		}
@@ -129,6 +131,6 @@ public class StringCalculatorFourOperations {
 
 	public static void main(String args[]) {
 		StringCalculatorFourOperations sc = new StringCalculatorFourOperations();
-		System.out.println(sc.divide("1000", "15"));
+		System.out.println(sc.addition("766", "-7"));
 	}
 }

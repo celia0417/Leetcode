@@ -3,63 +3,17 @@ package Snapchat;
 import java.util.*;
 
 public class CourseSchedule {
-	private int V;
-	private int E;
-	private List<Integer>[] adj;
-	private boolean hasCycle;
-	private boolean[] marked;
-	private boolean[] onStack;
-
-	public CourseSchedule(int n, int[][] edges) {
-		this.V = n;
-		this.E = edges.length;
-		adj = (List<Integer>[]) new List[V];
-		for (int i = 0; i < V; i++)
-			adj[i] = new ArrayList<Integer>();
-		for (int i = 0; i < E; i++) {
-			int v = edges[i][1];
-			int w = edges[i][0];
-			adj[v].add(w);
-		}
-	}
-
-	public boolean hasTopologicalOrder() {
-		marked = new boolean[V];
-		onStack = new boolean[V];
-		for (int v = 0; v < V; v++) {
-			if (!marked[v])
-				dfs(v);
-		}
-		return !hasCycle;
-	}
-
-	private void dfs(int v) {
-		marked[v] = true;
-		onStack[v] = true;
-		for (int w : adj[v]) {
-			if (hasCycle)
-				return;
-			else if (!marked[w])
-				dfs(w);
-			else if (onStack[w])
-				hasCycle = true;
-		}
-		onStack[v] = false;
-	}
-
-	public boolean canFinish(int numCourses, int[][] prerequistes) {
-		CourseSchedule cs = new CourseSchedule(numCourses, prerequistes);
-		return cs.hasTopologicalOrder();
-	}
 
 	// dfs
 	private ArrayList<Integer>[] graph;
 	private boolean visited[];
+	private boolean onStack[];
 	private boolean cycle;
 
 	public boolean canFinish2(int numCourses, int[][] prerequisites) {
 		graph = (ArrayList<Integer>[]) new ArrayList[numCourses];
 		visited = new boolean[numCourses];
+		onStack = new boolean[numCourses];
 
 		for (int i = 0; i < numCourses; i++) {
 			graph[i] = new ArrayList<Integer>();
@@ -77,16 +31,17 @@ public class CourseSchedule {
 
 	public void dfs2(int v) {
 		visited[v] = true;
+		onStack[v] = true;
 		for (int i = 0; i < graph[v].size(); i++) {
 			int w = graph[v].get(i);
 			if (cycle)
 				return;
 			else if (!visited[w])
 				dfs2(w);
-			else
+			else if (onStack[w])
 				cycle = true;
 		}
-		visited[v] = false;
+		onStack[v] = false;
 	}
 
 	// bfs
@@ -120,7 +75,7 @@ public class CourseSchedule {
 				}
 			}
 		}
-		if(count == numCourses)
+		if (count == numCourses)
 			return true;
 		else
 			return false;
