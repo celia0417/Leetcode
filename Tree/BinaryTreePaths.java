@@ -35,6 +35,20 @@ public class BinaryTreePaths {
         }
         return res;
     }
+	
+	int count = 0;
+	public int count (TreeNode root){
+		dfs(root);
+		return count;
+	}
+	
+	public void dfs(TreeNode root){
+		if (root == null) return;
+		count ++;
+		dfs(root.left);
+		dfs(root.right);		
+	}
+	
 	public static void main (String args[]){
 		BinaryTreePaths btp = new BinaryTreePaths();
 		TreeNode root = new TreeNode(1);
@@ -51,5 +65,7 @@ public class BinaryTreePaths {
 		for (String str :res){
 			System.out.println(str);
 		}
+		
+		System.out.println(btp.count(root));
 	}
 }
