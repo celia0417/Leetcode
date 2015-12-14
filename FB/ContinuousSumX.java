@@ -10,8 +10,7 @@ public class ContinuousSumX {
 		for (int end = 0; end < nums.length; end++) {
 			sum += nums[end];
 			while (start <= end && sum > X) {
-				sum -= nums[start];
-				start++;
+				sum -= nums[start++];
 			}
 			if (sum == X) {
 				return true;

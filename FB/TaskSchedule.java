@@ -14,8 +14,14 @@ public class TaskSchedule {
 					temp = k - (res-map.get(c));
 				}
 			}
-			res+=temp+1;map.put(c,res);
+			res+=temp+1;
+			map.put(c,res);
 		}
 		return res;
+	}
+	
+	public String best (String str, int k){
+		
+		return null;
 	}
 }

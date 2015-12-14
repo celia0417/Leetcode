@@ -28,6 +28,42 @@ public class VerticalPrintBinaryTree {
 		if (root.right != null)
 			radd(root.right, x + 1);
 	}
+	
+	public void printVer(TreeNode root) {
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		Map<TreeNode, Integer> map = new HashMap<TreeNode, Integer>();
+		HashMap<Integer, List<TreeNode>> list = new HashMap<Integer, List<TreeNode>>();
+		q.offer(root);
+		map.put(root, 0);
+		while (!q.isEmpty()) {
+			TreeNode cur = q.poll();
+			int val = map.get(cur);
+
+			if (!list.containsKey(val))
+				list.put(val, new ArrayList<TreeNode>(Arrays.asList(cur)));
+			else
+				list.get(val).add(cur);
+			if (cur.left != null) {
+				q.offer(cur.left);
+				map.put(cur.left, val - 1);
+			}
+			if (cur.right != null) {
+				q.offer(cur.right);
+				map.put(cur.right, val + 1);
+			}
+		}
+		
+		// for (int i = left; i <= right; i ++) {
+		// list.get(i);
+		// }
+		for (int i : list.keySet()) {
+			for (TreeNode t : list.get(i)) {
+				System.out.print(t.val + " ");
+			}
+			System.out.println();
+		}
+	}
+
 
 	public static void main(String args[]) {
 		TreeNode root = new TreeNode(1);
@@ -48,5 +84,7 @@ public class VerticalPrintBinaryTree {
 			}
 			System.out.println();
 		}
+		System.out.println("=================");
+		vpb.printVer(root);
 	}
 }
