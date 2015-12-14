@@ -1,6 +1,7 @@
 package Snapchat;
 
 public class StringCalculatorFourOperations {
+	
 	public String multiply(String num1, String num2) {
 		int len1 = num1.length(), len2 = num2.length();
 		int[] nums = new int[len1 + len2];
@@ -131,6 +132,6 @@ public class StringCalculatorFourOperations {
 
 	public static void main(String args[]) {
 		StringCalculatorFourOperations sc = new StringCalculatorFourOperations();
-		System.out.println(sc.addition("766", "-7"));
+		System.out.println(sc.divide("766", "7"));
 	}
 }

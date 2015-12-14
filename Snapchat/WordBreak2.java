@@ -59,12 +59,12 @@ public class WordBreak2 {
         if (i == s.length()){
             res.add(sol.toString());
         }
-        for (int j = 1 + i; j <= s.length(); j++){
-            if (wordDict.contains(s.substring(i, j))){
+        for (int j = i; j < s.length(); j++){
+            if (wordDict.contains(s.substring(i, j + 1))){
             	int len = sol.length();
-                sol.append(s.substring(i, j));
+                sol.append(s.substring(i, j + 1));
                 if (j != s.length()) sol.append(" "); 
-                dfs(s, wordDict, sol, j);
+                dfs(s, wordDict, sol, j  +1);
                 sol.delete(len, sol.length());
             }
         }

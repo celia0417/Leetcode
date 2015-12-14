@@ -3,8 +3,8 @@ package Snapchat;
 public class PrintDiagonal {
 	public void printDiagonal(int[][] nums) {
 		int m = nums.length, n = nums[0].length;
-		for( int k = 0 ; k < m + n ; k++ ) {
-	        for( int j = k ; j >= 0 ; j-- ) {
+		for( int k = 0 ; k < m + n - 1 ; k++ ) {
+	        for( int j = k ; j >= 0; j-- ) {
 	            int i = k - j;
 	            if( i < m && j < n ) {
 	                System.out.print( nums[i][j] + " " );
@@ -13,6 +13,7 @@ public class PrintDiagonal {
 	        System.out.println();
 	    }
 	}
+	
 
 	public static void main(String args[]) {
 		PrintDiagonal pd = new PrintDiagonal();

@@ -8,11 +8,13 @@ public class Snap {
 	private Set<Snap> visited;
 	private Set<Snap> onStack;
 	private boolean cycle = false;
+	
 	public boolean hasCycle() {
 		visited = new HashSet<Snap>();
 		onStack = new HashSet<>();
 		for (int i = 0 ; i < next.size(); i++){
-			dfs(next.get(i));
+			if (!visited.contains(next.get(i)))
+				dfs(next.get(i));
 		}
 		return cycle;
 	}

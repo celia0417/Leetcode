@@ -69,6 +69,8 @@ class HashMapCustom<K, V> {
 			previous.next = newEntry;
 		}
 	}
+	
+	
 
 	/**
 	 * Method returns value corresponding to key.
@@ -180,13 +182,13 @@ public class HashMapCustomApp {
 		System.out.println("value corresponding to key 51=" + hashMapCustom.get(51));
 
 		System.out.print("Displaying : ");
-		hashMapCustom.display();
+//		hashMapCustom.display();
 
 		System.out.println("\n\nvalue corresponding to key 21 removed: " + hashMapCustom.remove(21));
 		System.out.println("value corresponding to key 51 removed: " + hashMapCustom.remove(51));
 
 		System.out.print("Displaying : ");
-		hashMapCustom.display();
+//		hashMapCustom.display();
 
 	}
 }

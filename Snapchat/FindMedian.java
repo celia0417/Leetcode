@@ -7,6 +7,7 @@ public class FindMedian {
 	private Queue<Integer> maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
 
 	public void add(int num) {
+		
 		if ((minHeap.size() + maxHeap.size() & 1) == 0) {
 			if (maxHeap.size() > 0 && num < maxHeap.peek()){
 				maxHeap.offer(num);

@@ -52,7 +52,7 @@ public class FindMaximum {
 
 	public static void main(String args[]) {
 		FindMaximum fm = new FindMaximum();
-		int matrix[][] = {{0,1,2},{0,3,4},{0,7,8}};
+		int matrix[][] = {{7,8,6},{9,4,5},{2,3,1}};
 		System.out.println(fm.findMax(matrix));
 	}
 

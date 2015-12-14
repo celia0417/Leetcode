@@ -23,6 +23,7 @@ public class WordBreak {
 
 	// print the first valid
 	public String wordBreak(String s, Set<String> wordDict) {
+		List<Integer> list = new ArrayList<Integer>(2);
 		int n = s.length();
 		int dp [] = new int [n + 1];
 		Arrays.fill(dp, -1);
