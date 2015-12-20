@@ -95,6 +95,6 @@ public class StringChain {
 		// StringChain sc = new StringChain();
 		String words[] = { "a", "b", "ba", "bca", "bda", "bcda" };
 		String words2[] = { "", "a", "bcdad", "adghjkk" };
-		System.out.println(longest_chain(words));
+		System.out.println(longest_chain(words2));
 	}
 }
